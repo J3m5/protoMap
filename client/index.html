@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/materialize-css/dist/css/materialize.min.css">
+</head>
+<body>
+
+<div class="map"></div>
+<button class="btn getPositions">Get Data</button>
+<button class="btn startInsert">Start inserting data</button>
+<button class="btn deleteData">Delete data</button>
+<button class="btn insertOnedata">Insert one data</button>
+
+<table class="bordered striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>lat</th>
+        <th>long</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    </tbody>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/materialize-css/dist/js/materialize.js"></script>
+    <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEH43Unag1nRoqq2v4aiYAfAjOCJ_Q2ig&callback=initMap"
+        async defer></script>
+</body>
+
+</html>
