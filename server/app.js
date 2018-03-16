@@ -10,7 +10,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-server.listen(6060, '127.0.0.1', () => console.log('Example app listening on port 6060!'));
+server.listen(6060, () => console.log('Example app listening on port 6060!'));
 
 const connection = {
     user: 'aqeynyrq',
