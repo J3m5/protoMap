@@ -1,5 +1,5 @@
 const app = require('express')();
-const server = require('https').Server(app);
+const server = require('http').Server(app);
 const pgp = require('pg-promise')();
 const io = require('socket.io')(server);
 const positionsJson = require('./latlong.json');
