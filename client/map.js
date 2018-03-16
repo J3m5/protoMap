@@ -1,7 +1,7 @@
 let map;
 let coords = [];
 let flightPath;
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('https://coda-jr.com:3000');
 
 socket.on('update', function (data) {
     let position = JSON.parse(data.message.payload);
@@ -46,7 +46,7 @@ const emptyNode = (node) => {
 
 const getPositions = () => {
 
-    $.get('http://localhost:3000/request')
+    $.get('https://coda-jr.com:3000/request')
         .done(function (data) {
             emptyNode('tbody');
             data.forEach((el) => {
@@ -75,7 +75,7 @@ const getPositionsOnCLick = () => {
 const postPositionsOnCLick = () => {
     $(".btn.startInsert").click(function () {
         console.log('click');
-        $.post('http://localhost:3000/startInsert')
+        $.post('https://coda-jr.com:3000/startInsert')
             .done( (status) => {
                 console.log(status);
             })
@@ -88,7 +88,7 @@ const postPositionsOnCLick = () => {
 const deletePositionsOnCLick = () => {
     $(".btn.deleteData").click(function () {
         console.log('click');
-        $.post('http://localhost:3000/delete_data')
+        $.post('https://coda-jr.com:3000/delete_data')
             .done( () => {
                 emptyNode('tbody');
                 flightPath.getPath().clear();
