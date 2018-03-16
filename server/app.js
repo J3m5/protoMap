@@ -10,7 +10,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-server.listen(3000, () => console.log('Example app listening on port 3000!'));
+server.listen(3000, '127.0.0.1', () => console.log('Example app listening on port 3000!'));
 
 const connection = {
     user: 'aqeynyrq',
