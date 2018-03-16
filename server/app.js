@@ -122,6 +122,7 @@ app.post('/startInsert', (req, res) => {
             ++i;
             if (i === 100) {
                 clearInterval(interval);
+                res.send("insert done");
             }
             console.log(result);
             // res.send(result);

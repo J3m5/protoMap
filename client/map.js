@@ -76,6 +76,9 @@ const postPositionsOnCLick = () => {
     $(".btn.startInsert").click(function () {
         console.log('click');
         $.post('http://localhost:3000/startInsert')
+            .done( (status) => {
+                console.log(status);
+            })
             .fail( (err) => {
                 console.log(err);
             })
