@@ -10,7 +10,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-server.listen(3000, '127.0.0.1', () => console.log('Example app listening on port 3000!'));
+server.listen(6060, '127.0.0.1', () => console.log('Example app listening on port 6060!'));
 
 const connection = {
     user: 'aqeynyrq',
@@ -22,12 +22,12 @@ const connection = {
 
 const db = pgp(connection);
 
-db.none(`CREATE OR REPLACE FUNCTION notify_trigger() RETURNS trigger AS $$ 
-            DECLARE 
+db.none(`CREATE OR REPLACE FUNCTION notify_trigger() RETURNS trigger AS $$
+            DECLARE
                 data json;
                 notification json;
-            BEGIN 
-            
+            BEGIN
+
                 data = row_to_json(NEW);
                 notification = json_build_object(
                   'table',TG_TABLE_NAME,
