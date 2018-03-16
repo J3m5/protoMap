@@ -90,7 +90,7 @@ db.any('select tgname from pg_trigger;')
         });
 
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/node/', (req, res) => res.send('Hello World!'));
 
 app.get('/request', async (req, res) => {
     try {
