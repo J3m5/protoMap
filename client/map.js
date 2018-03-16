@@ -1,7 +1,7 @@
 let map;
 let coords = [];
 let flightPath;
-const socket = io.connect('https://coda-jr.com/node/', {secure: true});
+const socket = io.connect('http://localhost/node/');
 
 socket.on('update', function (data) {
     let position = JSON.parse(data.message.payload);
