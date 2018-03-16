@@ -10,6 +10,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.enable('trust proxy');
+
 server.listen(6060, () => console.log('Example app listening on port 6060!'));
 
 const connection = {
