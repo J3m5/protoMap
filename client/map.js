@@ -1,7 +1,7 @@
 let map;
 let coords = [];
 let flightPath;
-const socket = io.connect('https://localhost:3000');
+const socket = io.connect('https://localhost/node/');
 
 socket.on('update', function (data) {
     let position = JSON.parse(data.message.payload);
@@ -46,7 +46,7 @@ const emptyNode = (node) => {
 
 const getPositions = () => {
 
-    $.get('https://localhost:3000/request')
+    $.get('https://localhost/node/request')
         .done(function (data) {
             emptyNode('tbody');
             data.forEach((el) => {
@@ -75,7 +75,7 @@ const getPositionsOnCLick = () => {
 const postPositionsOnCLick = () => {
     $(".btn.startInsert").click(function () {
         console.log('click');
-        $.post('https://localhost:3000/startInsert')
+        $.post('https://localhost/node/startInsert')
             .done( (status) => {
                 console.log(status);
             })
@@ -88,7 +88,7 @@ const postPositionsOnCLick = () => {
 const deletePositionsOnCLick = () => {
     $(".btn.deleteData").click(function () {
         console.log('click');
-        $.post('https://localhost:3000/delete_data')
+        $.post('https://localhost/node/delete_data')
             .done( () => {
                 emptyNode('tbody');
                 flightPath.getPath().clear();
