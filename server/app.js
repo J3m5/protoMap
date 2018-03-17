@@ -2,8 +2,8 @@ const app = require('express')();
 const fs = require('fs');
 
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/livecoda-jr.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/livecoda-jr.com/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/coda-jr.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/coda-jr.com/fullchain.pem'),
     requestCert: true
 };
 
