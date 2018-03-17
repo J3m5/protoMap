@@ -1,5 +1,13 @@
 const app = require('express')();
-const server = require('http').Server(app);
+const fs = require('fs');
+
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/livecoda-jr.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/livecoda-jr.com/fullchain.pem'),
+    requestCert: true
+};
+
+const server = require('https').createServer(options, app);
 const pgp = require('pg-promise')();
 const io = require('socket.io')(server);
 const positionsJson = require('./latlong.json');
