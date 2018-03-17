@@ -99,7 +99,7 @@ const deletePositionsOnCLick = () => {
     console.log("click");
     $.post("https://coda-jr.com:6060/delete_data")
       .done(() => {
-        emptyNode("tbody");
+        emptyHtmlNode("tbody");
         driverPath.getPath().clear();
       })
       .fail(err => {
