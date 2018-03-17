@@ -16,21 +16,15 @@ socket.on("update", function(data) {
     </tr>`
   );
   map.panTo({lat: lat, lng: long});
-  let path = flightPath.getPath();
+  let path = driverPath.getPath();
   path.push(new google.maps.LatLng(lat, long));
-  flightPath.setPath(path);
-  if (flightPath.getPath().length === 1) {
+  driverPath.setPath(path);
+  if (driverPath.getPath().length === 1) {
     map.setZoom(18);
   }
 });
 
-function initMap() {
-  map = new google.maps.Map($(".map")[0], {
-    center: {lat: 44.05255, lng: 4.137},
-    zoom: 8
-  });
-  initPolyline(map, driverPath);
-}
+
 
 const initPolyline = () => {
   driverPath = new google.maps.Polyline({
@@ -42,6 +36,14 @@ const initPolyline = () => {
   });
 
   driverPath.setMap(map);
+}
+
+function initMap() {
+  map = new google.maps.Map($(".map")[0], {
+    center: {lat: 44.05255, lng: 4.137},
+    zoom: 8
+  });
+  initPolyline(map, driverPath);
 }
 
 const emptyHtmlNode = (node) => {
