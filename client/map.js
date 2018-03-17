@@ -1,20 +1,22 @@
 let map;
 let coords = [];
 let flightPath;
-const socket = io.connect('https://coda-jr.com:6060', {secure: true});
+const socket = io.connect('https://coda-jr.com:6060');
 
 socket.on('update', function (data) {
     let position = JSON.parse(data.message.payload);
     console.log(position);
+    const lat = position.data.pos.lat;
+    const long = position.data.pos.long;
     $('tbody').prepend(
         `<tr>
             <td>${position.data.id}</td>
-            <td>${position.data.pos.lat}</td>
-            <td>${position.data.pos.long}</td>
+            <td>${lat}</td>
+            <td>${long}</td>
         </tr>`);
-    map.panTo({lat : position.data.pos.lat, lng: position.data.pos.long});
+    map.panTo({lat : lat, lng: long});
     let path = flightPath.getPath();
-    path.push(new google.maps.LatLng(position.data.pos.lat, position.data.pos.long));
+    path.push(new google.maps.LatLng(lat, long));
     flightPath.setPath(path);
     if(flightPath.getPath().length === 1){
         map.setZoom(18);
@@ -75,7 +77,7 @@ const getPositionsOnCLick = () => {
 const postPositionsOnCLick = () => {
     $(".btn.startInsert").click(function () {
         console.log('click');
-        $.post('https://coda-jr.com:6060:startInsert')
+        $.post('https://coda-jr.com:6060/startInsert')
             .done( (status) => {
                 console.log(status);
             })

@@ -3,13 +3,12 @@ const fs = require('fs');
 const appRoot = process.cwd();
 const options = {
     key: fs.readFileSync(appRoot + '/privkey.pem'),
-    cert: fs.readFileSync(appRoot + '/fullchain.pem'),
-    requestCert: true
+    cert: fs.readFileSync(appRoot + '/fullchain.pem')
 };
 
 const server = require('https').createServer(options, app);
 const pgp = require('pg-promise')();
-const io = require('socket.io')(server);
+const io = require('socket.io').listen(server);
 const positionsJson = require('./latlong.json');
 const coordinates = positionsJson.features[0].geometry.coordinates;
 app.use(function (req, res, next) {
