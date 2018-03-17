@@ -41,7 +41,7 @@ const initPolyline = (driverPath, map) => {
     strokeWeight: 2
   });
 
-  flightPath.setMap(map);
+  driverPath.setMap(map);
 }
 
 const emptyHtmlNode = (node) => {
@@ -98,7 +98,7 @@ const deletePositionsOnCLick = () => {
     $.post("https://coda-jr.com:6060/delete_data")
       .done(() => {
         emptyNode("tbody");
-        flightPath.getPath().clear();
+        driverPath.getPath().clear();
       })
       .fail(err => {
         console.log(err);
