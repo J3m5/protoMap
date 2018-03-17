@@ -24,14 +24,15 @@ socket.on("update", function(data) {
   }
 });
 
-const initMap = (map) {
+const initMap = (map, driverPath) => {
   map = new google.maps.Map($(".map")[0], {
     center: {lat: 44.05255, lng: 4.137},
     zoom: 8
   });
+  initPolyline(map, driverPath);
 }
 
-const initPolyline = (driverPath, map) {
+const initPolyline = (driverPath, map) => {
   driverPahth = new google.maps.Polyline({
     path: [],
     geodesic: true,
