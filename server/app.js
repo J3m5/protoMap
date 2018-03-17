@@ -1,9 +1,9 @@
 const app = require('express')();
 const fs = require('fs');
-
+const appRoot = process.cwd();
 const options = {
-    key: fs.readFileSync('./privkey.pem'),
-    cert: fs.readFileSync('./fullchain.pem'),
+    key: fs.readFileSync(appRoot + '/privkey.pem'),
+    cert: fs.readFileSync(appRoot + '/fullchain.pem'),
     requestCert: true
 };
 
