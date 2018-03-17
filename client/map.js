@@ -24,7 +24,7 @@ socket.on("update", function(data) {
   }
 });
 
-const initMap = () => {
+function initMap() {
   map = new google.maps.Map($(".map")[0], {
     center: {lat: 44.05255, lng: 4.137},
     zoom: 8
