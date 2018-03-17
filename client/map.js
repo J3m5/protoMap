@@ -56,7 +56,7 @@ const emptyHtmlNode = (node) => {
 const getPositions = () => {
   $.get("https://coda-jr.com:6060/request")
     .done(function(data) {
-      emptyNode("tbody");
+      emptyHtmlNode("tbody");
       data.forEach(el => {
         coords.push({lat: el.position.lat, lng: el.position.long});
         $("tbody").append(
