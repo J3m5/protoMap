@@ -32,8 +32,8 @@ function initMap() {
   initPolyline(map, driverPath);
 }
 
-const initPolyline = (driverPath, map) => {
-  driverPahth = new google.maps.Polyline({
+const initPolyline = () => {
+  driverPath = new google.maps.Polyline({
     path: [],
     geodesic: true,
     strokeColor: "#FF0000",
