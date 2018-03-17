@@ -1,5 +1,5 @@
-.map, table {
-    height: 50%;
+.map {
+    height: 100%;
 }
 
 table {
@@ -12,6 +12,6 @@ html, body {
     padding: 0;
 }
 
-body > .row {
+body > .row, .map, .right-block  {
   height: 100%;
 }
