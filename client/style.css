@@ -1,9 +1,11 @@
-/* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
-.map {
+.map, table {
     height: 50%;
 }
-/* Optional: Makes the sample page fill the window. */
+
+table {
+  overflow : auto;
+}
+
 html, body {
     height: 100%;
     margin: 0;
