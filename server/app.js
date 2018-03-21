@@ -85,7 +85,6 @@ db.any('select tgname from pg_trigger;')
                     console.log('socket connected');
                     console.log(io.engine.clientsCount);
                     sco.client.on('notification', data => {
-                console.log('Received:', data);
                 socket.emit('update', { message: data });
                 // data.payload = 'my payload string'
                     });
