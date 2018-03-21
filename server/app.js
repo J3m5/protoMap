@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
 
 app.enable('trust proxy');
 
-server.listen(6060 + process.env.NODE_APP_INSTANCE, () => console.log('Example app listening on port 6060!'));
+server.listen(6060, () => console.log('Example app listening on port 6060!'));
 const connection = {
     user: 'aqeynyrq',
     host: 'packy.db.elephantsql.com',
