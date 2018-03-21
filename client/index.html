@@ -2,42 +2,67 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Real-time tracking prototype with websockets</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css" href="node_modules/materialize-css/dist/css/materialize.min.css">
+    <meta charset="UTF-8">
+    <title>Real-time tracking prototype with websockets</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/materialize-css/dist/css/materialize.min.css">
 </head>
 
 <body>
 
-  <div class="row">
-    <div class="map col s6"></div>
+<div class="row">
+
+    <div class="col s6 left-block">
+
+        <div class="card-panel map">
+        </div>
+    </div>
 
     <div class="col s6 right-block">
-      <div class="col s12">
-        <button class="btn startInsert">Start inserting data</button>
-        <button class="btn deleteData">Delete data</button>
-      </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title center-align">Commandes serveur / Postgres</span>
 
-      <table class="bordered striped col s12">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+                </div>
+                <div class="card-action">
+                    <div class="row">
+                        <button class="waves-effect waves-light btn startInsert center-align">Insertion des positions</button>
+                    </div>
+                    <div class="row">
+                        <button class="waves-effect waves-light btn deleteData center-align">Suppression des positions</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="card table-card">
+                <div class="card-content">
+                    <span class="card-title center-align">Positions reçues</span>
+                </div>
+                <div class="card-action">
+                    <table class="bordered striped centered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/materialize-css/dist/js/materialize.js"></script>
-  <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
-  <script src="map.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEH43Unag1nRoqq2v4aiYAfAjOCJ_Q2ig&callback=initMap"></script>
+</div>
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/materialize-css/dist/js/materialize.js"></script>
+<script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="map.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEH43Unag1nRoqq2v4aiYAfAjOCJ_Q2ig&callback=initMap"></script>
 </body>
 
 </html>

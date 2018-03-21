@@ -12,6 +12,42 @@ html, body {
     padding: 0;
 }
 
-body > .row, .map, .right-block  {
+body {
+    background-image: radial-gradient(circle, #2aa5d7, #1d96cc, #1386c1, #0f77b5, #1068a8);
+}
+body > .row, .map, .right-block, .left-block  {
   height: 100%;
+}
+
+body > .row {
+    margin-bottom: 0;
+}
+
+body .card-panel {
+    height: calc(100% - 28px);
+}
+body .card, body .card-panel {
+    margin: 1rem 0 1rem 0;
+}
+
+body .card .card-content {
+    padding: 8px;
+}
+
+body .card .card-content .card-title {
+    margin-bottom: 0;
+}
+
+.btn {
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.table-card{
+    height: calc(100vh - 255px);
+    overflow-y: auto;
+}
+
+.table-card.card .card-action {
+    padding: 0 24px;
 }
