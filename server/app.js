@@ -82,8 +82,8 @@ db.any('select tgname from pg_trigger;')
         .then(
             (sco) => {
                 io.on('connection', function (socket) {
-                    console.log('socket connected');
-                    console.log(io.engine.clientsCount);
+                    console.log(socket.id + 'connected');
+                    console.log("connected clients count : " + io.engine.clientsCount);
                     sco.client.on('notification', data => {
                 socket.emit('update', { message: data });
                 // data.payload = 'my payload string'
@@ -123,17 +123,17 @@ app.post('/delete_data', async (req, res) => {
 
 app.post('/startInsert', (req, res) => {
     let i = 0;
+    console.log("Insertion start");
     let interval = setInterval(async function () {
-        console.log(i);
+
         try {
             const result = await db.one('INSERT INTO positions(pos) VALUES($1) RETURNING id', ['{"lat": ' + coordinates[i][1] + ', "long": ' + coordinates[i][0] + '}']);
             ++i;
             if (i === 100) {
                 clearInterval(interval);
                 res.send("insert done");
+                console.log("Insertion end");
             }
-            console.log(result);
-            // res.send(result);
         }
         catch (err) {
             console.log(err);
