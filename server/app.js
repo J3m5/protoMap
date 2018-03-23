@@ -86,13 +86,13 @@ const dbNotifToClient = async () => {
             console.log(socket.id + 'connected');
             console.log("connected clients count : " + io.engine.clientsCount);
             sco.client.on('notification', data => {
-                socket.emit('update', { message: data });
+                socket.emit('update', {message: data});
                 // data.payload = 'my payload string'
             });
         });
         return sco.none('LISTEN $1~', 'watchers');
+    };
 };
-
     dbNotifToClient();
 
 // db.connect({direct: true})
