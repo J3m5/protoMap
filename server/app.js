@@ -78,29 +78,10 @@ db.any('select tgname from pg_trigger;')
     });
 
 
-const dbNotifToClient = async () => {
-try {
-    const sco = await db.connect({direct: true});
-    const watch = (sco) => {
-        io.on('connection', socket => {
-            console.log(socket.id + 'connected');
-            console.log("connected clients count : " + io.engine.clientsCount);
-            sco.client.on('notification', data => {
-                socket.emit('update', {message: data});
-                // data.payload = 'my payload string'
-            });
-        });
-        return sco.none('LISTEN $1~', 'watchers');
-    };
-}
-catch (err) {
-    console.log(err);
-}
-};
-    dbNotifToClient();
-
-// db.connect({direct: true})
-//     .then((sco) => {
+// const dbNotifToClient = async () => {
+//
+//     const sco = await db.connect({direct: true});
+//     const watch = (sco) => {
 //         io.on('connection', socket => {
 //             console.log(socket.id + 'connected');
 //             console.log("connected clients count : " + io.engine.clientsCount);
@@ -110,10 +91,25 @@ catch (err) {
 //             });
 //         });
 //         return sco.none('LISTEN $1~', 'watchers');
-//     })
-//     .catch(error => {
-//         console.log('Error:', error);
-//     });
+// };
+//
+//     dbNotifToClient();
+
+db.connect({direct: true})
+    .then((sco) => {
+        io.on('connection', socket => {
+            console.log(socket.id + 'connected');
+            console.log("connected clients count : " + io.engine.clientsCount);
+            sco.client.on('notification', data => {
+                socket.emit('update', { message: data });
+                // data.payload = 'my payload string'
+            });
+        });
+        return sco.none('LISTEN $1~', 'watchers');
+    })
+    .catch(error => {
+        console.log('Error:', error);
+    });
 
 
 app.get('/', (req, res) => res.send('Hello World!'));
