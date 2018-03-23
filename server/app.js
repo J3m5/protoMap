@@ -20,6 +20,7 @@ app.use(function (req, res, next) {
 app.enable('trust proxy');
 
 server.listen(6060, () => console.log('Example app listening on port 6060!'));
+
 const connection = {
     user: 'aqeynyrq',
     host: 'packy.db.elephantsql.com',
@@ -77,23 +78,38 @@ db.any('select tgname from pg_trigger;')
     });
 
 
+const dbNotifToClient = async () => {
 
-    db.connect({direct: true})
-        .then(
-            (sco) => {
-                io.on('connection', function (socket) {
-                    console.log(socket.id + 'connected');
-                    console.log("connected clients count : " + io.engine.clientsCount);
-                    sco.client.on('notification', data => {
+    const sco = await db.connect({direct: true});
+    const watch = (sco) => {
+        io.on('connection', socket => {
+            console.log(socket.id + 'connected');
+            console.log("connected clients count : " + io.engine.clientsCount);
+            sco.client.on('notification', data => {
                 socket.emit('update', { message: data });
                 // data.payload = 'my payload string'
-                    });
             });
-                return sco.none('LISTEN $1~', 'watchers');
-            })
-        .catch(error => {
-            console.log('Error:', error);
         });
+        return sco.none('LISTEN $1~', 'watchers');
+};
+
+    dbNotifToClient();
+
+// db.connect({direct: true})
+//     .then((sco) => {
+//         io.on('connection', socket => {
+//             console.log(socket.id + 'connected');
+//             console.log("connected clients count : " + io.engine.clientsCount);
+//             sco.client.on('notification', data => {
+//                 socket.emit('update', { message: data });
+//                 // data.payload = 'my payload string'
+//             });
+//         });
+//         return sco.none('LISTEN $1~', 'watchers');
+//     })
+//     .catch(error => {
+//         console.log('Error:', error);
+//     });
 
 
 app.get('/', (req, res) => res.send('Hello World!'));
