@@ -79,7 +79,7 @@ db.any('select tgname from pg_trigger;')
 
 
 const dbNotifToClient = async () => {
-
+try {
     const sco = await db.connect({direct: true});
     const watch = (sco) => {
         io.on('connection', socket => {
@@ -92,6 +92,10 @@ const dbNotifToClient = async () => {
         });
         return sco.none('LISTEN $1~', 'watchers');
     };
+}
+catch (err) {
+    console.log(err);
+}
 };
     dbNotifToClient();
 
