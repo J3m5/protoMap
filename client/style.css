@@ -24,12 +24,17 @@ body > .row {
 }
 
 body .card-panel {
-    height: calc(100% - 28px);
-}
-body .card, body .card-panel {
-    margin: 1rem 0 1rem 0;
+    margin: 0;
 }
 
+.collection-header h5 {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+body .collection.with-header {
+    margin-top: 0;
+}
 body .card .card-content {
     padding: 8px;
 }
@@ -43,11 +48,34 @@ body .card .card-content .card-title {
     left: 50%;
 }
 
-.table-card{
-    height: calc(100vh - 255px);
-    overflow-y: auto;
+.row .col > .col {
+    padding: 0;
 }
+
+@media only screen and (max-width: 600px) {
+    body .collection.with-header {
+        margin: 1rem 0 0.5rem 0
+    }
+}
+/*.table-card{*/
+    /*height: calc(100vh - 255px);*/
+    /*overflow-y: auto;*/
+/*}*/
 
 .table-card.card .card-action {
     padding: 0 24px;
+}
+
+body .card.table-card {
+    overflow-y: auto;
+    max-height: calc(100vh - 296px);
+    height: calc(100vh - 296px);
+}
+
+body .row {
+    padding: 1rem;
+}
+
+.collection-header h6 {
+    font-size : 1.2rem;
 }
