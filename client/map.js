@@ -1,8 +1,8 @@
 let map;
 let coords = [];
 let driverPath;
-// const socket = io.connect("https://coda-jr.com:6060");
-const socket = io.connect("localhost:6060");
+const socket = io.connect("https://coda-jr.com:6060");
+// const socket = io.connect("localhost:6060");
 
 
 const updatePositions = (map, driverPath) => {
