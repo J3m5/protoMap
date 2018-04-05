@@ -1,19 +1,20 @@
 let map;
 let coords = [];
 let driverPath;
-const socket = io.connect("https://coda-jr.com:6060");
-// const socket = io.connect("localhost:6060");
+// const socket = io.connect("https://coda-jr.com:6060");
+const socket = io.connect("localhost:6060");
 
 
-const updatePostions = (map, driverPath) => {
+const updatePositions = (map, driverPath) => {
     socket.on("update", function(data) {
-        let position = JSON.parse(data.message.payload);
+        let payload = JSON.parse(data.message.payload);
+        let position = payload.data;
         console.log(position);
-        const lat = position.data.pos.lat;
-        const long = position.data.pos.long;
+        const lat = position.pos.lat;
+        const long = position.pos.long;
         $("tbody").prepend(
             `<tr>
-        <td>${position.data.id}</td>
+        <td>${position.id}</td>
         <td>${lat}</td>
         <td>${long}</td>
     </tr>`
@@ -114,7 +115,7 @@ const stopPositionsOnCLick = () => {
 };
 
 $(function() {
-    updatePostions(map, driverPath);
+    updatePositions(map, driverPath);
     postPositionsOnCLick();
     stopPositionsOnCLick();
     deletePositionsOnCLick();

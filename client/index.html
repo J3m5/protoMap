@@ -13,28 +13,44 @@
 
 <div class="row">
 
-    <div class="col s12 m6 left-block">
-
+    <div class="col s12 m12 l6 left-block">
         <div class="card-panel map">
         </div>
     </div>
-    <!--pause_circle_outline-->
-    <div class="col s12 m6 right-block">
-        <div class="col s12">
-            <div class="collection with-header z-depth-1">
-                <li class="collection-header"><h5>Commandes serveur / Postgres</h5></li>
-                <li class="collection-header"><h6>Positions</h6></li>
-                <li class="collection-item startInsert"><div>Démarrer l'insertion<a href="#!" class="secondary-content"><i class="material-icons">play_circle_outline</i></a></div></li>
-                <li class="collection-item stopInsert"><div>Arréter l'insertion<a href="#!" class="secondary-content"><i class="material-icons">pause_circle_outline</i></a></div></li>
 
-                <li class="collection-item deleteData"><div>Suppression<a href="#!" class="secondary-content"><i class="material-icons">clear</i></a></div></li>
-            </div>
+    <div class="col s12 m12 l6 right-block">
+        <div class="col s12">
+            <ul class="collection with-header">
+                <li class="collection-header"><h5>Server & Postgres commands</h5></li>
+                <li class="collection-header"><h6>Positions</h6></li>
+                <li class="collection-item startInsert">
+                    <div>Start insert
+                        <a href="#!" class="secondary-content">
+                            <i class="material-icons">play_circle_outline</i>
+                        </a>
+                    </div>
+                </li>
+                <li class="collection-item stopInsert">
+                    <div>Stop insert
+                        <a href="#!" class="secondary-content">
+                            <i class="material-icons">pause_circle_outline</i>
+                        </a>
+                    </div>
+                </li>
+                <li class="collection-item deleteData">
+                    <div>Delete
+                        <a href="#!" class="secondary-content">
+                            <i class="material-icons">clear</i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <div class="col s12">
             <div class="card table-card">
                 <div class="card-content">
-                    <span class="card-title center-align">Positions reçues</span>
+                    <span class="card-title center-align">positions received</span>
                 </div>
                 <div class="card-action">
                     <table class="bordered striped centered">

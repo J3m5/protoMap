@@ -1,38 +1,47 @@
 const socketEvents = async (socket, db, coordinates) => {
-    let stopInsert = false;
-    let inserting = false;
-    let i = 0;
+
+    const insert = (() => {
+        let i = 0;
+        let intervalId = 0;
+
+        const start = (db, coordinates) => {
+            console.log(!intervalId);
+            intervalId =  !intervalId && i <= 100 ? setInterval( async () => {
+
+                await db.one('INSERT INTO positions(pos) VALUES($1) RETURNING id',
+                    ['{"lat": ' + coordinates[i][1] + ', "long": ' + coordinates[i][0] + '}']);
+                ++i;
+
+                if (i === 100) {
+                    stop();
+                }
+            }, 1000) : intervalId;
+
+        };
+
+        const stop = () => {
+            clearInterval(intervalId);
+            intervalId = false;
+        };
+
+        const reset = () => {
+            i = 0;
+        };
+
+        return {
+            start,
+            stop,
+            reset
+        }
+    })();
 
     socket.on('stopInsert', () => {
-        stopInsert = true;
+        insert.stop();
     });
 
-    socket.on('startInsert', async () => {
+    socket.on('startInsert', () => {
         try {
-            if(!inserting){
-                stopInsert = false;
-                inserting = true;
-                console.log("Insertion starting");
-                let interval = setInterval(() => {
-
-                    db.one('INSERT INTO positions(pos) VALUES($1) RETURNING id', ['{"lat": ' + coordinates[i][1] + ', "long": ' + coordinates[i][0] + '}']);
-                    ++i;
-                    console.log(stopInsert);
-                    if (i === 100) {
-                        i = 0;
-                    }
-                    if (i === 100 || stopInsert) {
-
-                        clearInterval(interval);
-                        console.log(stopInsert);
-                        stopInsert = false;
-                        inserting = false;
-                        console.log("Insertion end");
-                    }
-
-                }, 1000);
-            }
-
+            insert.start(db, coordinates)
         }
         catch (err) {
             console.log(err);
@@ -42,9 +51,8 @@ const socketEvents = async (socket, db, coordinates) => {
     socket.on('resetTablePosition', async () => {
         try {
             const result = await db.any("TRUNCATE TABLE positions RESTART IDENTITY;");
-            console.log(result);
+            insert.reset();
             socket.emit('tablePositionReseted', { positions: result });
-            i = 0;
         }
         catch (err) {
             console.log(err);

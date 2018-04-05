@@ -55,11 +55,11 @@ db.task('my-es7-task', async t => {
 });
 
 
-const dbNotifToClient = async (sco) => {
+const dbNotifToClient = (sco) => {
     try {
         sco.client.on('notification', data => {
             console.log('position notification');
-            io.local.emit('update', { message: data });
+            io.sockets.emit('update', { message: data });
         });
 
         return sco.none('LISTEN $1~', 'watchers');
@@ -68,7 +68,6 @@ const dbNotifToClient = async (sco) => {
         console.log(error);
     }
 };
-
 
 (async () => {
 
@@ -82,21 +81,13 @@ const dbNotifToClient = async (sco) => {
     dbNotifToClient(sco);
 })();
 
-
-
-
-// app.get('/', (req, res) => res.send('Hello World!'));
-
-app.get('/request', async (req, res) => {
-    try {
-        const result = await db.any("SELECT id AS ID, pos AS position FROM positions");
-        console.log(result);
-        res.send(result);
-    }
-    catch (err) {
-        console.log(err);
-    }
-});
-
-
-
+// app.get('/request', async (req, res) => {
+//     try {
+//         const result = await db.any("SELECT id AS ID, pos AS position FROM positions");
+//         console.log(result);
+//         res.send(result);
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// });
